@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-//import {AuthService} from '../auth.service';
+import {AuthService} from '../auth-service';
 import { NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
 @Component({
   selector: 'app-login',
@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    //private authService: AuthService,
+    private authService: AuthService,
     private toastrService: NbToastrService
   ) {
   }
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
+      usuario: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -35,20 +35,20 @@ export class LoginComponent implements OnInit {
       return;
     }
     const user = {
-      email: this.f.email.value,
+      email: this.f.usuario.value,
       password: this.f.password.value
     };
-    // this.authService.login(user).subscribe(data => {
-    //   this.toastrService.show(
-    //     'Login',
-    //     'login Successfully',
-    //     {position: NbGlobalPhysicalPosition.TOP_RIGHT, status: 'success' }
-    //   );
-    //   this.router.navigate(['/pages']);
-    // }, err=>{
-    //   this.error = true;
-    //   console.log( 'usuario o contraseña incorrectas ..' )
-    // });
+    this.authService.login(user).subscribe(data => {
+      this.toastrService.show(
+        'Login',
+        'login Successfully',
+        {position: NbGlobalPhysicalPosition.TOP_RIGHT, status: 'success' }
+      );
+      this.router.navigate(['/pages']);
+    }, err=>{
+      this.error = true;
+      console.log( 'usuario o contraseña incorrectas ..' )
+    });
   }
 }
 

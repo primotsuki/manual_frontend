@@ -1,15 +1,18 @@
 <nb-layout>
-    <nb-layout-header fixed class="row">
-      <div class="col-10">
-        CRYPTO - PRIMO
+    <nb-layout-header fixed class="NavBar">
+      <div class="row" style="width: 100%;">
+        <div class="col-2">
+          <img class="img-logo" src="assets/postgrado.png" alt="Logo UPEA">
+        </div>
+        <div class="col-8" style="color: #ffffff;">
+          PSG MANUAL DE USUARIO
+        </div>
+        <div style="color: #ffffff;" class="col-2">
+          <a (click)="logout()" href="#" nbButton> Salir</a>
+        </div>
       </div>
-      <!-- <div class="col-2">
-        <button nbButton ghost status="danger">
-          salir <nb-icon icon="close-circle-outline"></nb-icon>
-        </button>
-      </div> -->
     </nb-layout-header>
-    <nb-sidebar>
+    <nb-sidebar class="sideBar">
         <nb-menu [items]="menu"></nb-menu>
     </nb-sidebar>
     <nb-layout-column>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbMenuItem } from '@nebular/theme';
+import { AuthService } from '../auth/auth-service';
 
 @Component({
     selector: 'ngx-pages',
@@ -9,7 +10,7 @@ import { NbMenuItem } from '@nebular/theme';
 })
 export class PagesComponent {
 
-    constructor(//private authService: AuthService,
+    constructor(private authService: AuthService,
                 private router: Router) {
 
     }
@@ -19,52 +20,28 @@ export class PagesComponent {
             icon: 'home-outline',
             link: '/pages/dashboard'
         },{
-            title: 'Nueva Solicitud',
+            title: 'Administrador',
             icon: 'email-outline',
-            link: '/pages/solicitudes',
-            //hidden: (this.getRol()==2)
+            link: '/pages/usuarios',
+            hidden: (this.getRol()!=1)
         },{
-            title: 'Mis Solicitudes',
+            title: 'Coordinador',
             icon: 'inbox-outline',
-            link: '/pages/mis_solicitudes',
-            //hidden: (this.getRol()==2)
+            link: '/pages/coordinador',
+            hidden: (this.getRol()!=1)
         },{
-            title: 'Mis certificados',
+            title: 'Publicador',
             icon: 'folder-outline',
-            link: '/pages/mis_certificados',
-            //hidden: (this.getRol()==2)
-        },{
-            title: 'Certificados generados',
-            icon: 'folder-outline',
-            link: '/pages/certificados_institucion',
-           // hidden: (this.getRol()==3)
-        },{
-            title: 'Validar certificado',
-            icon: 'search-outline',
-           // link: '/pages/validar',
-        },{
-            title: 'Solicitudes pendientes',
-            icon: 'email-outline',
-            link: '/pages/pendientes',
-           // hidden: (this.getRol()==3)
-        },{
-            title: 'Emitir certificado',
-            icon: 'file-add-outline',
-            link: '/pages/certificar',
-          //  hidden: (this.getRol()==3)
-        },{
-            title: 'Revocar certificado',
-            icon: 'file-remove-outline',
-            link: '/pages/revocar',
-          //  hidden: (this.getRol()==3)
+            link: '/pages/publicador',
+            hidden: (this.getRol()!=1)
         }
     ];
 
-    // logout(){
-    //     this.authService.logout();
-    //     this.router.navigate(['/auth/login']);
-    // }
-    // getRol(){
-    //     return this.authService.currentRol;
-    // }
+    logout(){
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
+    }
+    getRol(){
+        return this.authService.currentUserValue.user_info.rol_id;
+    }
 }

@@ -5,6 +5,7 @@ import { AuthComponent } from './auth.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import {
   NbLayoutModule,
   NbAlertComponent,
@@ -20,6 +21,7 @@ import {
   declarations: [AuthComponent, LoginComponent],
   imports: [
     CommonModule,
+    //HttpClientModule,
     RouterModule,
     NbLayoutModule,
     AuthRoutingModule,
