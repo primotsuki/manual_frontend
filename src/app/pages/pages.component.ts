@@ -28,12 +28,22 @@ export class PagesComponent {
             title: 'Coordinador',
             icon: 'inbox-outline',
             link: '/pages/coordinador',
-            hidden: (this.getRol()!=1)
+            hidden: (this.getRol()!=1 && this.getRol()!=2)
         },{
             title: 'Publicador',
             icon: 'folder-outline',
             link: '/pages/publicador',
-            hidden: (this.getRol()!=1)
+            hidden: (this.getRol()!=1 && this.getRol()!=3)
+        },{
+            title:'Docente',
+            icon:'folder-outline',
+            link:'/pages/docente',
+            hidden:(this.getRol()!=1 && this.getRol()!=4)
+        },{
+            title:'Kardex',
+            icon:'folder-outline',
+            link:'/pages/kardex',
+            hidden:(this.getRol()!=1 && this.getRol()!=5)
         }
     ];
 
